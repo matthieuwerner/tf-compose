@@ -1,0 +1,39 @@
+{{range $module, $variables := .Modules}}
+module "{{$module}}" {
+
+  # @todo gérer les sources et le stockage
+  # Load module only if "{{$module}}" is present in yaml configuration
+  count = can(local.configuration.modules["function-php"]) ? 1 : 0
+
+  # Module source path
+  source = matthieuwerner/web-modules/{{$module}}
+
+  # @todo A gérer les trucs génériques aussi
+  # Generic variables
+  current_provider = local.configuration.provider
+  network          = module.network.name
+
+  # Overridable variables
+  {{range $name, $value := $variables}}
+  {{$name}} = {{$value}}
+  {{end}}
+
+
+  # If hosted on github
+  # source = "github.com/matthieuwerner/tf-compose"
+
+  # If hosted on TF registry
+  # source = "tf-compose/tf-compose"
+  # version = "1.0.0"
+
+  # Available options: (uncomment if needed)
+  # modules_config_file = ""
+  # name = ""
+  # prefix = ""
+  # default_module = ""
+  # default_domain = ""
+}
+output "{{$module}}" {
+  modules.{{$module}}
+}
+{{end}}
