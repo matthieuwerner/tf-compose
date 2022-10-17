@@ -4,9 +4,9 @@
 TF-compose is a stack composer based on 
 [Web Modules](https://INSERTLINK).
 
-This binary application generates a fully functionnal Terraform stack from a YAML description.
+This binary application generates a fully functionnal Terraform stack (files and folders) based on a YAML description.
 
-You only have to run the generation and deploy your stack, as is from local development to the production servers.
+The only thing you have to do is to execute the tf-compose binary and deploying your stack, from local development to the production servers.
 
 ## Quickstart
 
@@ -48,7 +48,7 @@ prod:
     domain: tf-compose.com
     modules: *modules
 ```
-Read more abour configuration [here](./doc/configuration.md).
+Read more about configuration [here](./doc/configuration.md).
 
 ### Step 3: Generate files
 
@@ -64,12 +64,11 @@ tf-compose install
 
 ```bash
 cd [your project root]/deploy
-tf-compose init
 tf-compose install
 ```
 
 
-Initialize a new Terraform project in your application. You can start with the following configuration:
+In your Terraform project, you will have to add required providers, and include the tf-compose module, like in the following configuration:
 ```terraform
 terraform {
   required_version = "> 1.0"
@@ -85,8 +84,7 @@ terraform {
     }
   }
 
-  // Local backend
-  backend "local" {}
+  // ...
 }
 
 # TF compose
@@ -111,3 +109,5 @@ lié aux modules blablabla
 // - gestion des versions avec des mots clés de version ?
 // - genere un fichier de loading de modules (par workspace, defautl defautl sinon autre)
 //
+
+// Voir ce repo ptet l"'inspi pour des trucs https://github.com/terraform-aws-modules/terraform-aws-lambda

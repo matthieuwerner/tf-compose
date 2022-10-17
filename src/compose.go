@@ -46,12 +46,6 @@ func main() {
 			panic(err)
 		}
 
-// 		{{ template "modules.tf.tmpl" . }}
-
-// {{ template "output.tf.tmpl" . }}
-
-
-
 		// Crawling modules
 		for moduleName, variables := range configuration.Modules {
 

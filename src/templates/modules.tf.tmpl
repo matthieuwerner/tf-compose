@@ -3,7 +3,7 @@ module "{{$module}}" {
 
   # @todo gérer les sources et le stockage
   # Load module only if "{{$module}}" is present in yaml configuration
-  count = can(local.configuration.modules["function-php"]) ? 1 : 0
+  count = can(local.configuration.modules["{{$module}}"]) ? 1 : 0
 
   # Module source path
   source = matthieuwerner/web-modules/{{$module}}
